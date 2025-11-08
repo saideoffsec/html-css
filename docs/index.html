@@ -1,1 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cybersecurity Projects Showcase</title>
 
+  <!-- App styles -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Prism (syntax highlighting) -->
+  <link rel="stylesheet" href="https://unpkg.com/prismjs/themes/prism-tomorrow.css">
+  <script defer src="https://unpkg.com/prismjs/components/prism-core.min.js"></script>
+  <script defer src="https://unpkg.com/prismjs/components/prism-markup.min.js"></script>
+  <script defer src="https://unpkg.com/prismjs/components/prism-css.min.js"></script>
+  <script defer src="https://unpkg.com/prismjs/components/prism-clike.min.js"></script>
+  <script defer src="https://unpkg.com/prismjs/components/prism-javascript.min.js"></script>
+
+  <!-- Prism Line Numbers plugin -->
+  <link rel="stylesheet" href="https://unpkg.com/prismjs/plugins/line-numbers/prism-line-numbers.css">
+  <script defer src="https://unpkg.com/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
+
+  <!-- App script -->
+  <script defer src="app.js"></script>
+</head>
+
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>Cyber Projects</h1>
+          <small>HTML + CSS code & preview</small>
+        </div>
+      </div>
+
+      <div class="search" title="Filter projects">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+             xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M21 21l-3.8-3.8M10.5 18a7.5 7.5 0 1 1 0-15
+                   7.5 7.5 0 0 1 0 15Z"
+                stroke="currentColor" stroke-width="1.5"/>
+        </svg>
+        <input id="filterInput" placeholder="Search projects... (e.g. phishing)" />
+      </div>
+
+      <div class="list">
+        <h3>Projects</h3>
+        <ul id="projectList" class="projects" aria-label="List of projects"></ul>
+      </div>
+    </aside>
+
+    <main class="workspace">
+      <div class="toolbar">
+        <div class="meta">
+          <span id="currentTitle">Select a project</span>
+        </div>
+        <div class="actions">
+          <button id="copyHtmlBtn" title="Copy HTML">Copy HTML</button>
+          <button id="copyCssBtn" title="Copy CSS">Copy CSS</button>
+          <button id="openPreviewBtn" class="primary"
+                  title="Open preview in a new tab">Open Preview</button>
+        </div>
+      </div>
+
+      <div class="panels">
+        <!-- HTML panel -->
+        <section class="panel">
+          <header><h2>HTML</h2><span class="kbd">Read-only</span></header>
+          <div class="codearea">
+            <pre class="code line-numbers">
+              <code id="htmlCode" class="language-markup" aria-label="HTML code"></code>
+            </pre>
+          </div>
+        </section>
+
+        <!-- CSS panel -->
+        <section class="panel">
+          <header><h2>CSS</h2><span class="kbd">Read-only</span></header>
+          <div class="codearea">
+            <pre class="code line-numbers">
+              <code id="cssCode" class="language-css" aria-label="CSS code"></code>
+            </pre>
+          </div>
+        </section>
+
+        <!-- Preview panel -->
+        <section class="panel">
+          <header><h2>Preview</h2><span class="kbd">Live</span></header>
+          <div class="previewwrap">
+            <iframe id="preview" title="Project preview"
+              sandbox="allow-forms allow-same-origin allow-popups allow-modals
+                       allow-pointer-lock allow-top-navigation-by-user-activation">
+            </iframe>
+          </div>
+        </section>
+      </div>
+
+      <div class="footer">
+        Tip: Use the search box to filter by keywords
+        (e.g., <em>phishing</em>, <em>dashboard</em>, <em>policy</em>).
+      </div>
+    </main>
+  </div>
+</body>
+</html>

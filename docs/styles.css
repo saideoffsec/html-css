@@ -1,0 +1,131 @@
+:root{
+  --bg:#0b0f14;
+  --panel:#0f141b;
+  --muted:#1a222c;
+  --text:#e6eef7;
+  --sub:#9db0c5;
+  --accent:#66e0a3;
+  --accent-2:#6cc2ff;
+  --danger:#ff6b6b;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --round: 16px;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body{
+  margin:0;
+  background: radial-gradient(1200px 800px at 80% -10%, #12304b33 0%, transparent 50%) , var(--bg);
+  color:var(--text);
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+.app{ display:grid; grid-template-columns: 280px 1fr; height: 100dvh; gap: 0; }
+
+/* Sidebar */
+aside.sidebar{
+  border-right: 1px solid var(--muted); background: linear-gradient(180deg, #0f141b 0%, #0d1218 100%);
+  display:flex; flex-direction:column; padding: 16px; gap: 12px;
+}
+.brand{ display:flex; align-items:center; gap:10px; padding: 6px 4px 4px; }
+.logo{ width:28px; height:28px; border-radius:10px; background: conic-gradient(from 0deg, var(--accent), var(--accent-2), var(--accent)); box-shadow:0 0 24px #66e0a333; }
+.brand h1{ font-size: 16px; margin:0; letter-spacing: .3px; }
+.brand small{ display:block; color:var(--sub); margin-top:2px; font-weight:500; }
+
+.search{ position: relative; }
+.search input{
+  width:100%; padding:10px 12px 10px 36px; border-radius: 10px; outline: none; border:1px solid var(--muted); background:#0a0f15; color:var(--text);
+}
+.search svg{ position:absolute; left:10px; top:50%; transform: translateY(-50%); opacity:.7 }
+
+.list{ overflow:auto; scrollbar-color: var(--muted) transparent; }
+.list h3{ margin: 10px 6px; font-size: 12px; color: var(--sub); letter-spacing: .08em; text-transform: uppercase; }
+.projects{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px; }
+.projects li{
+  border: 1px solid var(--muted); background: var(--panel); border-radius: 12px; padding:10px 12px; cursor:pointer;
+  transition: transform .08s ease, border-color .12s ease, background .12s ease;
+}
+.projects li:hover{ border-color:#2a3b4e; }
+.projects li.active{ outline: 2px solid #2a3b4e; background: #0c1219; }
+.projects .title{ font-weight:600; font-size:14px; margin:0 0 4px; }
+.projects .desc{ color:var(--sub); font-size:12px; line-height:1.35; }
+
+/* Workspace */
+main.workspace{ display:flex; flex-direction:column; }
+.toolbar{ display:flex; align-items:center; justify-content:space-between; gap:10px; padding: 12px 16px; border-bottom:1px solid var(--muted); background:#0c1219; }
+.toolbar .meta{ color:var(--sub); font-size: 13px; }
+.toolbar .actions{ display:flex; gap:8px; flex-wrap: wrap; }
+
+button{ appearance:none; border:none; background:#13202e; color:var(--text); padding:8px 12px; border-radius:10px; cursor:pointer; border:1px solid var(--muted); font-weight:600; }
+button:hover{ border-color:#2a3b4e }
+.primary{ background: linear-gradient(180deg, #143b2c, #0e2a21); border-color:#214f3e; }
+
+.panels{ display:grid; grid-template-columns: 1fr 1fr 1.1fr; gap:12px; padding: 12px; height: 100%; }
+
+.panel{
+  display:flex; flex-direction:column; min-height:0; border:1px solid var(--muted); background: var(--panel); border-radius: 14px; overflow:hidden; box-shadow: inset 0 1px 0 rgba(255,255,255,.02);
+}
+.panel header{ display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px 12px; border-bottom:1px solid var(--muted); background: #0c1219; }
+.panel header h2{ font-size:13px; margin:0; letter-spacing: .06em; text-transform: uppercase; color: var(--sub); }
+
+.codearea{ position:relative; height:100%; background:#0a0f15; }
+
+/* Code pane base */
+pre.code{
+  margin:0; height:100%; overflow:auto; border-radius:0;
+  background: repeating-linear-gradient(transparent, transparent 28px, rgba(255,255,255,0.02) 28px, rgba(255,255,255,0.02) 29px);
+  padding:12px;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  line-height: 1.55;
+  scrollbar-color: #1a2633 transparent;
+}
+pre.code::-webkit-scrollbar{ width:12px; height:12px; }
+pre.code::-webkit-scrollbar-thumb{ background:#1a2633; border:3px solid transparent; background-clip:content-box; border-radius:8px; }
+
+/* Preview */
+.previewwrap{ position:relative; height:100%; background:#0a0f15; }
+iframe{ width:100%; height:100%; border:0; background:white; border-radius:0; }
+
+.kbd{ font-family: var(--mono); font-size: 12px; padding:2px 6px; border:1px solid var(--muted); border-bottom-width:2px; border-radius:6px; background:#0a0f15; }
+
+.footer{ padding:8px 12px; color:var(--sub); font-size:12px; text-align:right; border-top:1px solid var(--muted); background:#0c1219; }
+
+/* Responsive */
+@media (max-width: 1200px){ .panels{ grid-template-columns: 1fr; grid-auto-rows: 38vh; } }
+@media (max-width: 880px){ .app{ grid-template-columns: 1fr; } aside.sidebar{ height: 42vh; } }
+
+/* ================================
+   Prism: Wrapping + Line Numbers
+   ================================ */
+
+/* Force wrapping even if Prism theme sets white-space: pre */
+pre.code,
+pre[class*="language-"],
+code[class*="language-"]{
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
+  overflow-wrap: anywhere !important;
+  white-space-collapse: preserve; /* keep indentation */
+}
+
+/* Line numbers gutter */
+pre.line-numbers { padding-left: 3.5em !important; }
+
+/* Make numbers slightly dimmer */
+.line-numbers .line-numbers-rows > span::before{
+  color:#54606d;
+  opacity:.6;
+}
+
+/* Keep code as a block so wrapped content aligns with numbers */
+pre.line-numbers code{
+  display:block;
+  padding-left:0;
+}
+
+/* Prefer vertical scrolling; no sideways scrollbars */
+pre.code{
+  overflow-x: hidden !important;
+  overflow-y: auto;
+}
